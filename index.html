@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wherewolf — Coming this fall</title>
+<meta name="description" content="A game of deception, ritual and the long night. Join the waitlist." />
+<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="teaser.css" />
+<style>
+  /* ============ Direction A — The Summoning ============ */
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative; min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .hero-art { position: absolute; inset: 0; z-index: 0; }
+  .hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+  .hero-art::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(90% 70% at 50% 30%, transparent 0%, transparent 42%, rgba(6,8,13,0.45) 78%, var(--ww-bg) 100%),
+      linear-gradient(180deg, rgba(6,8,13,0.45) 0%, transparent 22%, transparent 52%, rgba(6,8,13,0.9) 90%, var(--ww-bg) 100%);
+  }
+  .hero-grain::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: var(--ww-grain-svg); mix-blend-mode: overlay; opacity: 0.08;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 4; flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 132px 24px 56px;
+  }
+  .hero-inner .soon { margin-bottom: 30px; }
+  .hero-title {
+    font-family: var(--ww-font-display); font-weight: 700;
+    font-size: clamp(54px, 11vw, 132px); line-height: 0.94;
+    letter-spacing: 0.06em; text-transform: uppercase; margin: 0;
+    color: var(--ww-fg-on-dark);
+    text-shadow: 0 8px 60px rgba(0,0,0,0.6), 0 0 90px rgba(178,31,37,0.25);
+  }
+  .hero-sub {
+    margin: 26px auto 0; max-width: 30ch;
+    font-family: var(--ww-font-display); font-weight: 400;
+    font-size: clamp(16px, 2.4vw, 22px); letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ww-gold-soft);
+  }
+  .hero-line {
+    margin: 22px auto 0; max-width: 52ch; font-size: 17px; line-height: 1.65; color: var(--ww-fg-2);
+  }
+
+  /* waitlist sits in hero */
+  .hero-cta { width: min(540px, 100%); margin: 40px auto 0; }
+  .hero-stores { margin: 30px auto 0; justify-content: center; }
+
+  .scrollcue {
+    position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 4;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--ww-fg-4); font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  }
+  .scrollcue .material-symbols-outlined { font-size: 22px; animation: cueBob 1.8s ease-in-out infinite; }
+  @keyframes cueBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  /* ---- generic section ---- */
+  section.band { position: relative; padding: 104px 0; }
+  .sec-head { text-align: center; max-width: 56ch; margin: 0 auto 52px; }
+  .sec-head .eyebrow { justify-content: center; }
+  .sec-head h2 { font-family: var(--ww-font-display); font-weight: 700; font-size: clamp(30px, 4.6vw, 46px); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ww-fg); margin: 20px 0 0; }
+  .sec-head p { margin: 18px auto 0; font-size: 16px; line-height: 1.65; color: var(--ww-fg-2); }
+
+  .divline { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,163,107,0.3), transparent); }
+
+  /* ---- deck section ---- */
+  .deck-band { background: radial-gradient(120% 90% at 50% 0%, #12101a 0%, var(--ww-bg) 60%); }
+  .deck-foot { text-align: center; margin-top: 34px; font-family: var(--ww-font-mono); font-size: 12.5px; letter-spacing: 0.14em; color: var(--ww-fg-4); }
+
+  /* ---- finale ---- */
+  .finale { position: relative; padding: 120px 0 130px; overflow: hidden; background: #07060a; }
+  .finale-moon {
+    position: absolute; top: -120px; left: 50%; transform: translateX(-50%); z-index: 0;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle at 42% 38%, #2a0c10 0%, #6e1518 40%, #b21f25 66%, #7a1418 100%);
+    box-shadow: 0 0 160px 40px rgba(178,31,37,0.28); opacity: 0.5;
+  }
+  .finale .wrap-narrow { position: relative; z-index: 2; text-align: center; }
+  .finale h2 { font-family: var(--ww-font-display); font-weight: 700; font-size: clamp(34px, 6vw, 66px); letter-spacing: 0.05em; text-transform: uppercase; margin: 0; color: var(--ww-fg-on-dark); }
+  .finale p { margin: 22px auto 0; max-width: 50ch; font-size: 17px; line-height: 1.65; color: var(--ww-fg-2); }
+  .finale-cta { width: min(540px, 100%); margin: 40px auto 0; }
+  .finale-share { margin: 44px auto 0; justify-content: center; }
+  .finale-stores { margin: 26px auto 0; justify-content: center; }
+
+  @media (max-width: 720px) {
+    .hero-inner { padding-top: 116px; }
+    section.band { padding: 76px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Wherewolf</span>
+    </a>
+    <div class="nav-links">
+      <a href="#loop">How it plays</a>
+      <a href="#deck">The deck</a>
+      <a href="#factions">Factions</a>
+      <a href="#join" class="btn btn-ghost" style="height:42px;padding:0 20px;">Join the waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero hero-grain">
+  <div class="hero-art"><img src="hero.jpg" alt="A hooded wolf beneath a blood moon" /></div>
+  <div class="embers" data-count="26"></div>
+
+  <div class="hero-inner">
+    <span class="soon"><span class="dot"></span>Coming this fall</span>
+    <h1 class="hero-title">Wherewolf</h1>
+    <p class="hero-sub">Trust no one</p>
+    <p class="hero-line">A game of deception, ritual and the long night. Gather your friends, take a secret role, and survive until dawn — if the village lets you.</p>
+
+    <div class="hero-cta waitlist" id="join">
+      <form class="waitlist-form">
+        <input type="email" inputmode="email" autocomplete="email" placeholder="Enter your email to be summoned" aria-label="Email address" />
+        <button type="submit" class="btn btn-gold">Join the waitlist</button>
+      </form>
+      <div class="waitlist-note"><span class="material-symbols-outlined">lock</span>One message, at moonrise. No spam, ever.</div>
+      <div class="waitlist-done">
+        <span class="seal"><span class="material-symbols-outlined">check</span></span>
+        <div>
+          <b>Your name is in the circle</b>
+          <span>We'll summon you the moment the village wakes. Tell the others — the more souls, the longer the night.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stores hero-stores">
+      <a class="store" href="#join"><span class="material-symbols-outlined">ios_share</span><span class="store-lines"><small class="pre">Pre-register</small><strong>App Store</strong></span></a>
+      <a class="store" href="#join"><span class="material-symbols-outlined">android</span><span class="store-lines"><small class="pre">Pre-register</small><strong>Google Play</strong></span></a>
+    </div>
+  </div>
+
+  <div class="scrollcue"><span>Descend</span><span class="material-symbols-outlined">keyboard_arrow_down</span></div>
+</header>
+
+<!-- NIGHT / DAY LOOP -->
+<section class="band" id="loop">
+  <div class="wrap-narrow">
+    <div class="sec-head reveal">
+      <span class="eyebrow dual">The long night</span>
+      <h2>Two phases. One survivor's truth.</h2>
+      <p>Every game breathes in and out — the secret dark of night, the open accusation of day — until one faction is left standing.</p>
+    </div>
+    <div class="loop reveal" data-delay="80">
+      <div class="loop-card night">
+        <span class="orb"></span>
+        <span class="ph">Phase I · Night</span>
+        <h3>The village sleeps</h3>
+        <p>Wolves choose a victim. Seers peer into souls. Every role acts in secret, and no one sees the hands that move in the dark.</p>
+      </div>
+      <div class="loop-card day">
+        <span class="orb"></span>
+        <span class="ph">Phase II · Day</span>
+        <h3>The village wakes</h3>
+        <p>A body is found. Now you argue, accuse and lie through your teeth — then vote. One player hangs. Choose wisely.</p>
+      </div>
+    </div>
+    <div class="loop-arrows reveal" data-delay="160">
+      <span class="material-symbols-outlined">sync</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divline"></div></div>
+
+<!-- DECK -->
+<section class="band deck-band" id="deck">
+  <div class="sec-head reveal">
+    <span class="eyebrow dual">27 painted roles</span>
+    <h2>A whole deck of secrets</h2>
+    <p>Werewolves, vampires, seers, jesters and a graveyard of stranger things. Every role is a hand-painted tarot card — and a different way to win, or betray.</p>
+  </div>
+  <div class="deck-strip reveal" data-delay="60">
+    <div class="deck-track" data-marquee data-order="werewolf,seer,jester,vampire,fortune_teller,hunter,plague_bearer,mayor,knight,executioner,alpha_werewolf,oracle,silencer,bodyguard,grave_robber"></div>
+  </div>
+  <div class="deck-foot reveal">5 Werewolves · 3 Vampires · 5 Neutrals · 14 Villagers</div>
+</section>
+
+<div class="wrap"><div class="divline"></div></div>
+
+<!-- FACTIONS -->
+<section class="band" id="factions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow dual">Four factions</span>
+      <h2>Whose side will you wake on?</h2>
+      <p>Roles are dealt in secret. You won't know who sits beside you at the table — only what you must do to win.</p>
+    </div>
+    <div class="factions-row reveal" data-delay="80" id="factions-grid"></div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="finale-moon"></div>
+  <div class="embers" data-count="18"></div>
+  <div class="wrap-narrow">
+    <div class="reveal">
+      <span class="eyebrow dual" style="justify-content:center;">The summoning</span>
+      <h2>The village wakes<br />this fall</h2>
+      <p>Be among the first inside the circle. Join the waitlist and we'll send a single summons the night the doors open.</p>
+    </div>
+
+    <div class="finale-cta waitlist reveal" data-delay="80">
+      <form class="waitlist-form">
+        <input type="email" inputmode="email" autocomplete="email" placeholder="Enter your email to be summoned" aria-label="Email address" />
+        <button type="submit" class="btn btn-gold">Join the waitlist</button>
+      </form>
+      <div class="waitlist-note"><span class="material-symbols-outlined">lock</span>One message, at moonrise. No spam, ever.</div>
+      <div class="waitlist-done">
+        <span class="seal"><span class="material-symbols-outlined">check</span></span>
+        <div>
+          <b>Your name is in the circle</b>
+          <span>We'll summon you the moment the village wakes.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="share finale-share reveal" data-delay="120">
+      <span class="share-label">Summon your pack</span>
+      <button class="share-btn" data-share="x" aria-label="Share on X" title="Share on X">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </button>
+      <button class="share-btn" data-share="facebook" aria-label="Share on Facebook" title="Share on Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </button>
+      <button class="share-btn" data-share="discord" aria-label="Copy Discord invite" title="Copy Discord invite">
+        <svg viewBox="0 0 24 24"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </button>
+      <button class="share-btn" data-share="copy" aria-label="Copy link" title="Copy link">
+        <span class="material-symbols-outlined">link</span>
+      </button>
+      <span class="share-toast"></span>
+    </div>
+
+    <div class="stores finale-stores reveal" data-delay="160">
+      <a class="store" href="#"><span class="material-symbols-outlined">ios_share</span><span class="store-lines"><small class="pre">Pre-register</small><strong>App Store</strong></span></a>
+      <a class="store" href="#"><span class="material-symbols-outlined">android</span><span class="store-lines"><small class="pre">Pre-register</small><strong>Google Play</strong></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <div class="brand"><span class="brand-mark"></span><span class="brand-name">Wherewolf</span></div>
+      <p class="ww-body-2" style="margin:16px 0 0;max-width:34ch;">A game of deception, ritual and the long night. Coming this fall to iOS &amp; Android.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h5>The game</h5>
+        <a href="#loop">How it plays</a>
+        <a href="#deck">The deck</a>
+        <a href="#factions">Factions</a>
+      </div>
+      <div class="foot-col">
+        <h5>Follow</h5>
+        <a href="#" data-share="x">X / Twitter</a>
+        <a href="#">Discord</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="foot-legal">© 2026 Wherewolf. All souls reserved. · Direction A — The Summoning</div>
+  </div>
+</footer>
+
+<script src="roles.js"></script>
+<script src="common.js"></script>
+<script src="teaser.js"></script>
+<script>
+  (function () {
+    var F = window.WW_FACTIONS, grid = document.getElementById('factions-grid');
+    if (F && grid) {
+      ['werewolves', 'vampires', 'neutrals', 'villagers'].forEach(function (k) {
+        var f = F[k];
+        var el = document.createElement('div');
+        el.className = 'faction-tile';
+        el.innerHTML =
+          '<span class="bar" style="background:' + f.color + ';box-shadow:0 0 18px 1px ' + f.color + '55;"></span>' +
+          '<span class="fcount">' + String(f.count).padStart(2, '0') + ' roles</span>' +
+          '<h4 style="color:' + f.color + '">' + f.label + '</h4>' +
+          '<p>' + f.line + '</p>';
+        grid.appendChild(el);
+      });
+    }
+  })();
+</script>
+</body>
+</html>

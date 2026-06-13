@@ -1,0 +1,395 @@
+/* ============================================================
+   Werewolf — Design Tokens
+   Color system, type system, spacing, shadows.
+   Sourced from lib/theme/app_theme.dart, then pushed harder
+   toward the tarot-card / gothic-ritual game aesthetic.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('fonts/Cinzel-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cinzel';
+  src: url('fonts/Cinzel-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cinzel';
+  src: url('fonts/Cinzel-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FiraCode';
+  src: url('fonts/FiraCode-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FiraCode';
+  src: url('fonts/FiraCode-SemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ----- BASE PALETTE — deep night ----- */
+  --ww-bg:            #06080D;   /* deeper than app's #0D1117 — cinematic black */
+  --ww-bg-alt:        #0D1117;   /* original Flutter background */
+  --ww-surface:       #10141D;   /* base surface */
+  --ww-surface-2:     #161B26;   /* raised surface */
+  --ww-surface-3:     #1F2532;   /* hover / pressed surface */
+  --ww-card:          #1A1E2A;   /* card body — warmer than pure neutral */
+  --ww-card-edge:     #2A2F3D;   /* subtle inner stroke */
+  --ww-divider:       #2B3140;
+  --ww-overlay:       rgba(6,8,13,0.78);     /* scrim over imagery */
+  --ww-scrim:         rgba(6,8,13,0.92);     /* heavy scrim, modals */
+
+  /* ----- BRAND / RITUAL ----- */
+  --ww-primary:       #7C3AED;   /* ritual purple — deeper than Flutter's #6E40C9 */
+  --ww-primary-soft:  #8B5CF6;
+  --ww-primary-deep:  #4C1D95;
+  --ww-primary-glow:  rgba(124,58,237,0.35);
+
+  /* Brass / gold — the ornate frame color from the role-card paintings. */
+  --ww-gold:          #C9A36B;
+  --ww-gold-soft:     #E8C988;
+  --ww-gold-deep:     #8B6A3A;
+  --ww-gold-glow:     rgba(201,163,107,0.30);
+
+  /* Moon — pale cream highlight, used on stroke + glow */
+  --ww-moon:          #F2E6C8;
+  --ww-moon-glow:     rgba(242,230,200,0.45);
+
+  /* Ember — torch / dawn / warning */
+  --ww-ember:         #F78166;
+  --ww-ember-deep:    #C2410C;
+
+  /* ----- FACTION COLORS — match RoleData ----- */
+  --ww-werewolf:      #DA3633;   /* blood red */
+  --ww-werewolf-deep: #B91C1C;
+  --ww-werewolf-soft: rgba(218,54,51,0.18);
+  --ww-vampire:       #7C3AED;
+  --ww-vampire-deep:  #5B21B6;
+  --ww-vampire-soft:  rgba(124,58,237,0.18);
+  --ww-villager:      #3FB950;
+  --ww-villager-deep: #15803D;
+  --ww-villager-soft: rgba(63,185,80,0.18);
+  --ww-neutral:       #0D9488;
+  --ww-neutral-deep:  #0F766E;
+  --ww-neutral-soft:  rgba(13,148,136,0.18);
+
+  /* Individual neutral/winner accents (from role_data.dart) */
+  --ww-jester:        #E11D48;
+  --ww-executioner:   #64748B;
+  --ww-plague:        #84CC16;
+  --ww-lawyer:        #0D9488;
+
+  /* ----- PHASE ----- */
+  --ww-night-sky:     #0D1117;
+  --ww-night-deep:    #050810;
+  --ww-night-mid:     #0A0F1A;
+  --ww-day-sky:       #1A3A5C;
+  --ww-day-sky-mid:   #2D5A87;
+  --ww-day-sky-warm:  #F0A35A;   /* added — warm dawn rim */
+  --ww-surface-blue:  #1A1E2E;
+
+  /* ----- TEXT (bone-cream, not pure white) ----- */
+  --ww-fg:            #F0F6FC;   /* primary */
+  --ww-fg-2:          #C9D1D9;   /* secondary, slightly warmer than app */
+  --ww-fg-3:          #8B949E;   /* muted */
+  --ww-fg-4:          #6E7681;   /* faint / disabled */
+  --ww-fg-on-dark:    #F0E6D2;   /* parchment cream — used on hero panels */
+  --ww-fg-link:       #8B5CF6;
+
+  /* ----- STATUS ----- */
+  --ww-success:       #3FB950;
+  --ww-error:         #DA3633;
+  --ww-warning:       #D29922;
+  --ww-info:          #58A6FF;
+  --ww-dead:          #6E7681;
+
+  /* ----- TYPOGRAPHY ----- */
+  --ww-font-display:  'Cinzel', 'Trajan Pro', 'Cormorant Garamond', Georgia, serif;
+  --ww-font-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --ww-font-mono:     'FiraCode', 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Display — for screen titles, faction announcements, ritual moments */
+  --ww-display-1-size:    56px;
+  --ww-display-1-weight:  700;
+  --ww-display-1-track:   0.32em;     /* very wide — incantation feel */
+  --ww-display-1-leading: 1.05;
+
+  --ww-display-2-size:    36px;
+  --ww-display-2-weight:  700;
+  --ww-display-2-track:   0.20em;
+  --ww-display-2-leading: 1.1;
+
+  --ww-h1-size:    32px;
+  --ww-h1-weight:  700;
+  --ww-h1-track:   0.04em;
+
+  --ww-h2-size:    24px;
+  --ww-h2-weight:  700;
+  --ww-h2-track:   0.04em;
+
+  --ww-h3-size:    20px;
+  --ww-h3-weight:  600;
+  --ww-h3-track:   0.04em;
+
+  --ww-title-size:    18px;
+  --ww-title-weight:  600;
+  --ww-body-size:     16px;
+  --ww-body-leading:  1.5;
+  --ww-body-2-size:   14px;
+  --ww-caption-size:  12px;
+
+  /* Eyebrow / small-caps label — always uppercase + tracked */
+  --ww-eyebrow-size:   12px;
+  --ww-eyebrow-weight: 600;
+  --ww-eyebrow-track:  0.24em;
+
+  /* Code / IDs */
+  --ww-code-size:   20px;
+  --ww-code-weight: 600;
+  --ww-code-track:  0.25em;     /* 4px @ 16px in Flutter labelSmall */
+
+  /* ----- SPACING ----- */
+  --ww-space-1:  4px;
+  --ww-space-2:  8px;
+  --ww-space-3:  12px;
+  --ww-space-4:  16px;
+  --ww-space-5:  20px;
+  --ww-space-6:  24px;
+  --ww-space-7:  32px;
+  --ww-space-8:  40px;
+  --ww-space-9:  48px;
+  --ww-space-10: 64px;
+  --ww-screen-pad:         32px;  /* AppSpacing.screenPadding */
+  --ww-screen-pad-compact: 24px;  /* AppSpacing.screenPaddingCompact */
+
+  /* ----- RADII ----- */
+  --ww-r-xs: 6px;
+  --ww-r-sm: 8px;
+  --ww-r-md: 12px;     /* badge / status / pill */
+  --ww-r-lg: 16px;     /* card / button / input — system default */
+  --ww-r-xl: 20px;     /* dialog */
+  --ww-r-2xl: 24px;    /* sheet top */
+  --ww-r-pill: 9999px;
+
+  /* ----- ELEVATION / GLOW ----- */
+  --ww-shadow-card:    0 1px 0 rgba(255,255,255,0.03) inset,
+                        0 12px 32px -16px rgba(0,0,0,0.6);
+  --ww-shadow-raised:  0 18px 48px -20px rgba(0,0,0,0.8),
+                        0 1px 0 rgba(255,255,255,0.04) inset;
+  --ww-shadow-modal:   0 32px 80px -16px rgba(0,0,0,0.85);
+
+  /* Glows — used on selected / active / role badges */
+  --ww-glow-primary:   0 0 0 1px rgba(124,58,237,0.55),
+                        0 0 28px 4px rgba(124,58,237,0.30);
+  --ww-glow-gold:      0 0 0 1px rgba(201,163,107,0.55),
+                        0 0 32px 6px rgba(201,163,107,0.28);
+  --ww-glow-werewolf:  0 0 0 1px rgba(218,54,51,0.55),
+                        0 0 32px 6px rgba(218,54,51,0.30);
+  --ww-glow-moon:      0 0 60px 12px rgba(242,230,200,0.30);
+
+  /* ----- BORDERS ----- */
+  --ww-stroke:         1px solid var(--ww-divider);
+  --ww-stroke-soft:    1px solid rgba(201,163,107,0.18);  /* gold hint */
+  --ww-stroke-gold:    1px solid rgba(201,163,107,0.45);
+  --ww-stroke-card:    1px solid var(--ww-card-edge);
+
+  /* ----- MOTION ----- */
+  --ww-ease:           cubic-bezier(0.4, 0.0, 0.2, 1);          /* @kind other */
+  --ww-ease-out:       cubic-bezier(0.2, 0.8, 0.2, 1);          /* @kind other */
+  --ww-ease-emph:      cubic-bezier(0.16, 1, 0.3, 1);           /* @kind other */ /* easeOutQuart-ish */
+  --ww-ease-back:      cubic-bezier(0.68, -0.55, 0.27, 1.55);   /* @kind other */
+  --ww-dur-fast:       150ms;   /* @kind other */
+  --ww-dur-base:       300ms;   /* @kind other */
+  --ww-dur-slow:       600ms;   /* @kind other */
+  --ww-dur-phase:      800ms;   /* @kind other */ /* phase transitions */
+
+  /* ----- ATMOSPHERE ----- */
+  /* Subtle grain — apply as ::after with mix-blend-mode: overlay; opacity 0.07 */
+  --ww-grain-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); /* @kind other */
+
+  /* Vignette — radial darkening at edges */
+  --ww-vignette: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%); /* @kind other */
+
+  /* Night/day phase backgrounds — pulled from PhaseBackground widget */
+  --ww-bg-night: linear-gradient(180deg,
+    var(--ww-bg) 0%,
+    var(--ww-surface) 50%,
+    var(--ww-surface-blue) 100%);
+  --ww-bg-day: linear-gradient(180deg,
+    var(--ww-day-sky) 0%,
+    var(--ww-day-sky-mid) 50%,
+    var(--ww-day-sky) 100%);
+  --ww-bg-auth: linear-gradient(135deg,
+    var(--ww-bg) 0%,
+    var(--ww-surface-blue) 50%,
+    var(--ww-bg) 100%);
+  --ww-bg-werewolf-reveal: linear-gradient(180deg,
+    var(--ww-bg) 0%,
+    rgba(218,54,51,0.15) 50%,
+    var(--ww-bg) 100%);
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Use as `class="ww-display1"` etc, or apply directly to tags
+   inside a `.ww` scope.
+   ============================================================ */
+
+.ww, .ww-root {
+  background: var(--ww-bg);
+  color: var(--ww-fg);
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-body-size);
+  line-height: var(--ww-body-leading);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ww-display1, h1.ww {
+  font-family: var(--ww-font-display);
+  font-size: var(--ww-display-1-size);
+  font-weight: var(--ww-display-1-weight);
+  letter-spacing: var(--ww-display-1-track);
+  line-height: var(--ww-display-1-leading);
+  text-transform: uppercase;
+  color: var(--ww-fg);
+  margin: 0;
+}
+
+.ww-display2 {
+  font-family: var(--ww-font-display);
+  font-size: var(--ww-display-2-size);
+  font-weight: var(--ww-display-2-weight);
+  letter-spacing: var(--ww-display-2-track);
+  line-height: var(--ww-display-2-leading);
+  text-transform: uppercase;
+  color: var(--ww-fg);
+  margin: 0;
+}
+
+.ww-h1, h2.ww {
+  font-family: var(--ww-font-display);
+  font-size: var(--ww-h1-size);
+  font-weight: var(--ww-h1-weight);
+  letter-spacing: var(--ww-h1-track);
+  color: var(--ww-fg);
+  margin: 0;
+}
+
+.ww-h2, h3.ww {
+  font-family: var(--ww-font-display);
+  font-size: var(--ww-h2-size);
+  font-weight: var(--ww-h2-weight);
+  letter-spacing: var(--ww-h2-track);
+  color: var(--ww-fg);
+  margin: 0;
+}
+
+.ww-h3, h4.ww {
+  font-family: var(--ww-font-display);
+  font-size: var(--ww-h3-size);
+  font-weight: var(--ww-h3-weight);
+  letter-spacing: var(--ww-h3-track);
+  color: var(--ww-fg);
+  margin: 0;
+}
+
+.ww-title {
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-title-size);
+  font-weight: var(--ww-title-weight);
+  color: var(--ww-fg);
+}
+
+.ww-body {
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-body-size);
+  line-height: var(--ww-body-leading);
+  color: var(--ww-fg);
+}
+
+.ww-body-2, p.ww {
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-body-2-size);
+  line-height: 1.5;
+  color: var(--ww-fg-2);
+}
+
+.ww-caption {
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-caption-size);
+  color: var(--ww-fg-3);
+}
+
+.ww-eyebrow {
+  font-family: var(--ww-font-body);
+  font-size: var(--ww-eyebrow-size);
+  font-weight: var(--ww-eyebrow-weight);
+  letter-spacing: var(--ww-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--ww-fg-3);
+}
+
+.ww-code {
+  font-family: var(--ww-font-mono);
+  font-size: var(--ww-code-size);
+  font-weight: var(--ww-code-weight);
+  letter-spacing: var(--ww-code-track);
+  color: var(--ww-fg);
+}
+
+/* Gold "incantation" treatment — for hero titles on dramatic screens */
+.ww-incant {
+  font-family: var(--ww-font-display);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, var(--ww-moon) 0%, var(--ww-gold) 60%, var(--ww-gold-deep) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(201,163,107,0.25);
+}
+
+/* Atmospheric grain overlay — drop on any container */
+.ww-grain::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: var(--ww-grain-svg);
+  mix-blend-mode: overlay;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Vignette overlay */
+.ww-vignette::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--ww-vignette);
+  pointer-events: none;
+}

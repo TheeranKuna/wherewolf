@@ -1,0 +1,161 @@
+/* ============================================================
+   Werewolf — PRE-LAUNCH TEASER shared layer
+   Built on top of site.css (which imports the DS tokens).
+   Adds: waitlist capture, share row, ember atmosphere,
+   "coming soon" badges, pre-register store badges, card peeks.
+   Used by teaser-a / teaser-b / teaser-c.
+   ============================================================ */
+
+/* ---------- coming-soon pill ---------- */
+.soon {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 34px; padding: 0 16px; border-radius: var(--ww-r-pill);
+  background: rgba(201,163,107,0.08);
+  border: 1px solid rgba(201,163,107,0.32);
+  font-family: var(--ww-font-mono); font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ww-gold-soft);
+  white-space: nowrap;
+}
+.soon .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ww-gold-soft); box-shadow: 0 0 10px 2px var(--ww-gold-glow);
+  animation: soonPulse 1.8s var(--ww-ease) infinite;
+}
+@keyframes soonPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ---------- waitlist capture ---------- */
+.waitlist { width: 100%; }
+.waitlist-form {
+  display: flex; gap: 12px; width: 100%;
+  background: rgba(8,10,16,0.55);
+  border: 1px solid var(--ww-card-edge);
+  border-radius: var(--ww-r-lg); padding: 8px 8px 8px 20px;
+  transition: border-color var(--ww-dur-base) var(--ww-ease), box-shadow var(--ww-dur-base) var(--ww-ease);
+}
+.waitlist-form:focus-within {
+  border-color: rgba(201,163,107,0.5);
+  box-shadow: 0 0 0 1px rgba(201,163,107,0.35), 0 0 28px -6px var(--ww-gold-glow);
+}
+.waitlist-form input {
+  flex: 1 1 auto; min-width: 0; border: none; background: none; outline: none;
+  color: var(--ww-fg); font-family: var(--ww-font-body); font-size: 16px;
+  letter-spacing: 0.01em;
+}
+.waitlist-form input::placeholder { color: var(--ww-fg-4); }
+.waitlist-form .btn { flex: none; height: 52px; }
+.waitlist-note {
+  margin-top: 14px; font-size: 13px; color: var(--ww-fg-3); letter-spacing: 0.01em;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.waitlist-note .material-symbols-outlined { font-size: 16px; color: var(--ww-gold-deep); }
+
+/* success state */
+.waitlist-done {
+  display: none; align-items: center; gap: 16px;
+  border: 1px solid rgba(201,163,107,0.4); border-radius: var(--ww-r-lg);
+  padding: 20px 22px; background: rgba(201,163,107,0.06);
+  animation: doneIn 0.6s var(--ww-ease-emph) both;
+}
+.waitlist.done .waitlist-form { display: none; }
+.waitlist.done .waitlist-note { display: none; }
+.waitlist.done .waitlist-done { display: flex; }
+.waitlist-done .seal {
+  width: 46px; height: 46px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 40% 36%, var(--ww-gold-soft), var(--ww-gold-deep));
+  box-shadow: var(--ww-glow-gold);
+}
+.waitlist-done .seal .material-symbols-outlined { font-size: 24px; color: #1a1408; font-variation-settings: 'wght' 500; }
+.waitlist-done b { display: block; font-family: var(--ww-font-display); font-weight: 600; font-size: 16px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ww-fg-on-dark); }
+.waitlist-done span { font-size: 13.5px; color: var(--ww-fg-2); line-height: 1.5; }
+@keyframes doneIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ---------- share row ---------- */
+.share { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.share-label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ww-fg-4); margin-right: 4px; }
+.share-btn {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.02); border: 1px solid var(--ww-divider);
+  color: var(--ww-fg-2);
+  transition: border-color var(--ww-dur-base) var(--ww-ease), color var(--ww-dur-base) var(--ww-ease), background var(--ww-dur-base) var(--ww-ease);
+}
+.share-btn:hover { border-color: var(--ww-stroke-gold); color: var(--ww-gold-soft); background: rgba(201,163,107,0.06); }
+.share-btn .material-symbols-outlined { font-size: 21px; }
+.share-btn svg { width: 19px; height: 19px; fill: currentColor; }
+.share-toast {
+  font-size: 12.5px; color: var(--ww-gold-soft); letter-spacing: 0.04em;
+  opacity: 0; transform: translateX(-6px); transition: opacity var(--ww-dur-base), transform var(--ww-dur-base);
+}
+.share-toast.show { opacity: 1; transform: none; }
+
+/* ---------- pre-register store badge (uses .store from site.css) ---------- */
+.store small.pre { color: var(--ww-gold-deep); }
+
+/* ---------- ember atmosphere ---------- */
+.embers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.ember {
+  position: absolute; bottom: -12px; width: 3px; height: 3px; border-radius: 50%;
+  background: var(--ww-ember); box-shadow: 0 0 8px 2px rgba(247,129,102,0.6);
+  opacity: 0; animation: emberRise linear infinite;
+}
+@keyframes emberRise {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  12%  { opacity: 0.9; }
+  80%  { opacity: 0.7; }
+  100% { transform: translateY(-92vh) translateX(var(--drift, 20px)) scale(0.3); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .embers { display: none; } }
+
+/* ---------- night / day loop (brief) ---------- */
+.loop { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.loop-card {
+  position: relative; overflow: hidden; border-radius: var(--ww-r-xl);
+  border: 1px solid var(--ww-card-edge); padding: 34px 32px 36px; min-height: 300px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.loop-card.night { background: var(--ww-bg-night); }
+.loop-card.day   { background: var(--ww-bg-day); }
+.loop-card .orb {
+  position: absolute; top: 26px; right: 28px; width: 64px; height: 64px; border-radius: 50%;
+}
+.loop-card.night .orb { background: radial-gradient(circle at 38% 34%, #fff8e6, var(--ww-moon) 55%, #b9a877 100%); box-shadow: var(--ww-glow-moon); }
+.loop-card.day   .orb { background: radial-gradient(circle at 40% 38%, #fff0cf, var(--ww-day-sky-warm) 60%, #c2410c 100%); box-shadow: 0 0 50px 10px rgba(240,163,90,0.4); }
+.loop-card .ph { font-family: var(--ww-font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ww-fg-3); }
+.loop-card.day .ph { color: rgba(255,255,255,0.7); }
+.loop-card h3 { font-family: var(--ww-font-display); font-weight: 700; font-size: 30px; letter-spacing: 0.16em; text-transform: uppercase; margin: 12px 0 0; color: var(--ww-fg-on-dark); }
+.loop-card.day h3 { color: #fff; }
+.loop-card p { margin: 14px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ww-fg-2); max-width: 38ch; }
+.loop-card.day p { color: rgba(255,255,255,0.86); }
+.loop-arrows { display: flex; justify-content: center; gap: 10px; margin-top: 20px; color: var(--ww-gold); }
+.loop-arrows .material-symbols-outlined { font-size: 22px; }
+
+@media (max-width: 720px) { .loop { grid-template-columns: 1fr; } }
+
+/* ---------- card peek: marquee ---------- */
+.deck-strip { position: relative; overflow: hidden; padding: 8px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.deck-track { display: flex; gap: 20px; width: max-content; animation: deckScroll 60s linear infinite; }
+.deck-strip:hover .deck-track { animation-play-state: paused; }
+.deck-card {
+  width: 178px; aspect-ratio: 420/630; border-radius: 10px; overflow: hidden; flex: none;
+  border: 1px solid rgba(201,163,107,0.32);
+  box-shadow: 0 22px 44px -20px rgba(0,0,0,0.85);
+}
+.deck-card img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes deckScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .deck-track { animation: none; } }
+
+/* ---------- faction chips ---------- */
+.factions-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.faction-tile {
+  position: relative; border-radius: var(--ww-r-lg); overflow: hidden;
+  border: 1px solid var(--ww-card-edge); background: var(--ww-card);
+  padding: 22px 20px 24px; transition: border-color var(--ww-dur-base) var(--ww-ease), transform var(--ww-dur-base) var(--ww-ease-emph);
+}
+.faction-tile:hover { transform: translateY(-4px); }
+.faction-tile .fcount { font-family: var(--ww-font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ww-fg-4); }
+.faction-tile h4 { font-family: var(--ww-font-display); font-weight: 700; font-size: 19px; letter-spacing: 0.1em; text-transform: uppercase; margin: 10px 0 0; }
+.faction-tile p { margin: 10px 0 0; font-size: 13px; line-height: 1.55; color: var(--ww-fg-3); }
+.faction-tile .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+@media (max-width: 820px) { .factions-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .factions-row { grid-template-columns: 1fr; } }
