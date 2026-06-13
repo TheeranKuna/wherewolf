@@ -15,6 +15,9 @@
   var SHARE_URL = 'https://wherewolf.app';
   var SHARE_TEXT = 'The village is waking this fall. Wherewolf — a game of deception, ritual and the long night. Join the waitlist:';
 
+  // Kit (ConvertKit) waitlist form — public subscribe endpoint, no API key needed client-side.
+  var KIT_FORM_ENDPOINT = 'https://app.kit.com/forms/9559731/subscriptions';
+
   ready(function () {
     /* ---------- waitlist ---------- */
     document.querySelectorAll('.waitlist').forEach(function (wl) {
@@ -27,13 +30,30 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var input = form.querySelector('input');
+        var btn = form.querySelector('button');
         var val = (input && input.value || '').trim();
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
           if (input) { input.focus(); form.style.borderColor = 'rgba(218,54,51,0.6)'; setTimeout(function(){ form.style.borderColor = ''; }, 1200); }
           return;
         }
-        try { localStorage.setItem('ww_waitlist', val); } catch (e) {}
-        wl.classList.add('done');
+        function fail() {
+          if (btn) btn.disabled = false;
+          if (input) input.focus();
+          form.style.borderColor = 'rgba(218,54,51,0.6)';
+          setTimeout(function () { form.style.borderColor = ''; }, 1600);
+        }
+        if (btn) btn.disabled = true;
+        var body = new URLSearchParams();
+        body.set('email_address', val);
+        // Kit returns HTTP 200 even on failure, so branch on the JSON `status`, not res.ok.
+        fetch(KIT_FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: body })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (!data || data.status === 'failed') { fail(); return; }
+            try { localStorage.setItem('ww_waitlist', val); } catch (e) {}
+            wl.classList.add('done');
+          })
+          .catch(fail);
       });
     });
 
