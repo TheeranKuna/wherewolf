@@ -46,8 +46,10 @@
   color: var(--ww-gold-soft); margin: 28px 0 8px;
 }
 .legal-body p { margin: 0 0 16px; }
-.legal-body ul { margin: 0 0 18px; padding-left: 22px; }
+.legal-body ul,
+.legal-body ol { margin: 0 0 18px; padding-left: 22px; }
 .legal-body li { margin: 0 0 9px; }
+.legal-body li::marker { color: var(--ww-gold); }
 .legal-body a { color: var(--ww-gold-soft); text-decoration: underline; text-underline-offset: 2px; }
 .legal-body a:hover { color: var(--ww-gold); }
 .legal-body strong { color: var(--ww-fg); font-weight: 600; }
