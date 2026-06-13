@@ -124,7 +124,9 @@
           var img = document.createElement('img');
           img.src = window.WW_ASSET.card(r.id);
           img.alt = r.label;
-          img.loading = 'lazy';
+          // No lazy-loading here: these cards live in a transform-animated marquee,
+          // where loading="lazy" leaves off-screen cards permanently blank in some browsers.
+          img.decoding = 'async';
           d.appendChild(img);
           track.appendChild(d);
         });
