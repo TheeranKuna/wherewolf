@@ -126,8 +126,11 @@ button { font-family: inherit; cursor: pointer; }
 .brand { display: inline-flex; align-items: center; gap: 12px; }
 .brand-mark {
   width: 38px; height: 38px; border-radius: 50%;
-  background: url('mark.jpg') center/cover;
-  border: 1px solid var(--ww-stroke-gold); box-shadow: 0 0 0 3px rgba(201,163,107,0.08);
+  /* Blood-moon mark, CSS-generated so no image asset is required.
+     To use a real logo instead: background: url('mark.jpg') center/cover; (and add mark.jpg). */
+  background: radial-gradient(circle at 38% 34%, #d94a3f 0%, #b21f25 36%, #6e1518 70%, #2a0c10 100%);
+  border: 1px solid var(--ww-stroke-gold);
+  box-shadow: 0 0 0 3px rgba(201,163,107,0.08), 0 0 12px 1px rgba(178,31,37,0.5);
 }
 .brand-name {
   font-family: var(--ww-font-display); font-weight: 700; font-size: 18px;
