@@ -12,7 +12,7 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  var SHARE_URL = 'https://wherewolf.app';
+  var SHARE_URL = 'https://wherewolf.info';
   var SHARE_TEXT = 'The village is waking this fall. Wherewolf — a game of deception, ritual and the long night. Join the waitlist:';
 
   // Kit (ConvertKit) waitlist form — public subscribe endpoint, no API key needed client-side.
